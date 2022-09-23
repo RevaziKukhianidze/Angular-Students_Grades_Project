@@ -1,0 +1,60 @@
+<section class="col-md 5 m-auto">
+  <article class="col-md-3 m-auto">
+    <h3>Add Homework</h3>
+    <div class="form-group">
+      <label for="">Enter Homework Name</label>
+      <input
+        [(ngModel)]="homeWorkName"
+        type="text"
+        placeholder="enter here"
+        class="form-control"
+      />
+    </div>
+    <div class="form-group">
+      <label for="">Enter Finish Time</label>
+      <input
+        [(ngModel)]="homeWorkperiod"
+        type="date"
+        placeholder="enter here"
+        class="form-control"
+      />
+    </div>
+
+    <div class="form-grou">
+      <button
+        (click)="onDataSubmit()"
+        class="btn btn-dark col-md-3 d-block m-auto"
+      >
+        Add
+      </button>
+    </div>
+  </article>
+</section>
+
+<div class="form-group">
+  <button (click)="saveGrades()" class="btn btn-success">save scores</button>
+</div>
+
+<article class="col-md-12">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Student</th>
+        <th *ngFor="let item of getAllHomeWorkNames()" scope="col">
+          {{ item }}
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr
+        *ngFor="let student of students; let i = index"
+        [ngClass]="i < 3 ? 'top-students' : ''"
+      >
+        <th scope="row">{{ student.fullName }}</th>
+        <td *ngFor="let work of student.homeworks" class="grade-inp-tr">
+          <input [(ngModel)]="work.grade" type="number" class="form-control" />
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</article>
